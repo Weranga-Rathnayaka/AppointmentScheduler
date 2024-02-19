@@ -63,16 +63,16 @@
                     </tr>
 
                     <tr>
-                        <td><b>date</b></td>
+                        <td><b>Date</b></td>
                         <td><span th:text="${#temporals.format(appointment.start, 'dd-MM-yyyy')}">10-01-2019</span></td>
                     </tr>
                     <tr>
-                        <td><b>time</b></td>
+                        <td><b>Time</b></td>
                         <td><span th:text="${#temporals.format(appointment.start, 'HH:mm')+' - '+ #temporals.format(appointment.end, 'HH:mm')}">14:00 - 15:00</span>
                         </td>
                     </tr>
                     <tr>
-                        <td><b>customer</b></td>
+                        <td><b>Customer</b></td>
                         <td><span th:text="${appointment.customer.firstName+' '+appointment.customer.lastName}">Defualt Customer Last Name</span>
                         </td>
                     </tr>
@@ -83,11 +83,11 @@
                     </tr>
 
                     <tr>
-                        <td><b>work</b></td>
+                        <td><b>Test</b></td>
                         <td><span th:text="${appointment.work.name}"> Test </span></td>
                     </tr>
                     <tr>
-                        <td><b>description</b></td>
+                        <td><b>Description</b></td>
                         <td><span th:text="${appointment.work.description}">description</span></td>
                     </tr>
 
@@ -102,7 +102,7 @@
                     </tr>
 
                     <tr>
-                        <td><b>exchange</b></td>
+                        <td><b>Exchange</b></td>
                         <td th:if="${allowedToExchange}">
                             <a th:href="@{'/exchange/'+${appointment.id}}">Exchange</a>
                         </td>
@@ -112,7 +112,7 @@
                     </tr>
                     
                     <tr>
-                        <td><b>cancellation</b></td>
+                        <td><b>Cancellation</b></td>
                         <td th:if="${allowedToCancel}">
                             <form th:action="@{/appointments/cancel}" method='POST'>
                                 <input type="hidden" name="appointmentId" th:value="${appointment.id}">

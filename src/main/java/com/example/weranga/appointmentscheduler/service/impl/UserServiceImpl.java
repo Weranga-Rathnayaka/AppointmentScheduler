@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
     @PreAuthorize("#userId == principal.id")
     public User getUserById(int userId) {
         return userRepository.findById(userId)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
     }
 
     @Override
@@ -68,14 +68,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public Provider getProviderById(int providerId) {
         return providerRepository.findById(providerId)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found!"));
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found!"));
     }
 
     @Override
     @PreAuthorize("#retailCustomerId == principal.id or hasRole('ADMIN')")
     public RetailCustomer getRetailCustomerById(int retailCustomerId) {
         return retailCustomerRepository.findById(retailCustomerId)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found!"));
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found!"));
 
     }
 
@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
     @PreAuthorize("#corporateCustomerId == principal.id or hasRole('ADMIN')")
     public CorporateCustomer getCorporateCustomerById(int corporateCustomerId) {
         return corporateCustomerRepository.findById(corporateCustomerId)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found!"));
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found!"));
     }
 
     @Override
@@ -106,7 +106,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByUsername(String userName) {
         return userRepository.findByUserName(userName)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found!"));
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found!"));
     }
 
     @Override
