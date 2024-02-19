@@ -4,12 +4,21 @@
 <head></head>
 
 <body>
+
+<div style="background-color:#f2f2f2;padding:15px">
+    <div style="background-color:#fff;padding:15px;color:#4d4d4d;font-size:14px">
+
 <p>Hello, <span th:text="${newAppointment.getCustomer().getFirstName()}"></span></p>
 <p>Someone want's to exchange his appointment with your appointment. </p>
 <p>You appointment date is: <span th:text="${#temporals.format(newAppointment.start, 'dd-MM-yyyy HH:mm')}"></span></p>
 <p>His/Her appointment date is: <span th:text="${#temporals.format(oldAppointment.start, 'dd-MM-yyyy HH:mm')}"></span></p>
 
 <p>Click <a th:href="${url}">here</a> to view it and take action.</p>
+
+
+    </div>
+</div>
+
 
 </body>
 </html>

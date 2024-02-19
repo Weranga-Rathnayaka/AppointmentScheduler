@@ -4,6 +4,10 @@
 <head></head>
 
 <body>
+
+<div style="background-color:#f2f2f2;padding:15px">
+    <div style="background-color:#fff;padding:15px;color:#4d4d4d;font-size:14px">
+
 <p>Hello, <span th:text="${appointment.provider.firstName}"></span></p>
 <p>You customer claims that the following appointment didn't take place: </p>
 <p>Customer: <span th:text="${appointment.customer.firstName + ' ' + appointment.customer.lastName}"></span></p>
@@ -12,6 +16,10 @@
 <p>Duration: <span th:text="${appointment.work.duration}"></span></p>
 <p>Price: <span th:text="${appointment.work.price}"></span></p>
 <p>If you agree with that, click <a th:href="${url}">here</a></p>
+
+
+    </div>
+</div>
 
 </body>
 
