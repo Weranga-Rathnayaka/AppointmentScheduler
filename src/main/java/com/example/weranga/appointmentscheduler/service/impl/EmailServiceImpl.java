@@ -7,6 +7,9 @@ import com.example.weranga.appointmentscheduler.entity.Invoice;
 import com.example.weranga.appointmentscheduler.entity.user.User;
 import com.example.weranga.appointmentscheduler.service.EmailService;
 import com.example.weranga.appointmentscheduler.util.PdfGeneratorUtil;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -25,6 +28,8 @@ import java.nio.charset.StandardCharsets;
 @Service
 public class EmailServiceImpl implements EmailService {
 
+    public static final String ACCOUNT_SID = System.getenv("TWILIO_ACCOUNT_SID");
+    public static final String AUTH_TOKEN = System.getenv("TWILIO_AUTH_TOKEN");
     private final JavaMailSender javaMailSender;
     private final SpringTemplateEngine templateEngine;
     private final JwtTokenServiceImpl jwtTokenService;
@@ -65,6 +70,8 @@ public class EmailServiceImpl implements EmailService {
             log.error("Error while adding attachment to email, error is {}", e.getLocalizedMessage());
         }
 
+
+
     }
 
     @Async
@@ -83,6 +90,7 @@ public class EmailServiceImpl implements EmailService {
         context.setVariable("appointment", appointment);
         context.setVariable("url", baseUrl + "/appointments/acceptRejection?token=" + jwtTokenService.generateAcceptRejectionToken(appointment));
         sendEmail(appointment.getProvider().getEmail(), "Rejection requested", "appointmentRejectionRequested", context, null);
+        SendMsg("Appoinment Rejection Request Sent By Customer");
     }
 
     @Async
@@ -91,6 +99,8 @@ public class EmailServiceImpl implements EmailService {
         Context context = new Context();
         context.setVariable("appointment", appointment);
         sendEmail(appointment.getProvider().getEmail(), "New appointment booked", "newAppointmentScheduled", context, null);
+        SendMsg("New Appoinment Sheduled By Customer");
+
     }
 
     @Async
@@ -100,6 +110,7 @@ public class EmailServiceImpl implements EmailService {
         context.setVariable("appointment", appointment);
         context.setVariable("canceler", "customer");
         sendEmail(appointment.getProvider().getEmail(), "Appointment canceled by Customer", "appointmentCanceled", context, null);
+        SendMsg("An Appoinment Canceled By A Customer");
     }
 
     @Async
@@ -168,5 +179,16 @@ public class EmailServiceImpl implements EmailService {
         context.setVariable("exchangeRequest", exchangeRequest);
         context.setVariable("url", baseUrl + "/appointments/" + exchangeRequest.getRequestor().getId());
         sendEmail(exchangeRequest.getRequestor().getCustomer().getEmail(), "Exchange request rejected", "exchangeRequestRejected", context, null);
+    }
+
+    public static void SendMsg(String messageText) {
+        Twilio.init("AC8db776f8381aae32d6c3aa4ef137f606", "61b28a3e2abc9b521118f3ed3310d67b");
+        Message message = Message.creator(
+                        new com.twilio.type.PhoneNumber("+94764065868"),
+                        new com.twilio.type.PhoneNumber("+15169906673"),
+                        messageText)
+                .create();
+
+
     }
 }
