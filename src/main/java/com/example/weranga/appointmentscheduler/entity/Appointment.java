@@ -18,6 +18,10 @@ import java.util.List;
 @JsonSerialize(using = AppointmentSerializer.class)
 public class Appointment extends BaseEntity implements Comparable<Appointment> {
 
+
+    @Column(name = "doctor")
+    private String doctor;
+
     @Column(name = "start")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime start;
@@ -164,4 +168,13 @@ public class Appointment extends BaseEntity implements Comparable<Appointment> {
     public void setExchangeRequest(ExchangeRequest exchangeRequest) {
         this.exchangeRequest = exchangeRequest;
     }
+
+    public String getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
+    }
+
 }

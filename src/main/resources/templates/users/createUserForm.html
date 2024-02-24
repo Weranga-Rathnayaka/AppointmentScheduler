@@ -23,7 +23,7 @@
                     <div class="form-group">
                         <label for="userName">Username</label>
 
-                        <input type="text" class="form-control" th:classappend="${#fields.hasErrors('userName') ? 'is-invalid' :''}" th:field="*{userName}" placeholder="userName">
+                        <input type="text" class="form-control" th:classappend="${#fields.hasErrors('userName') ? 'is-invalid' :''}" th:field="*{userName}" placeholder="UserName">
                         <div th:if="${#fields.hasErrors('userName')}" class="invalid-feedback">
                            <p th:errors="*{userName}"></p>
                         </div>
@@ -32,7 +32,7 @@
 
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" th:classappend="${#fields.hasErrors('password') ? 'is-invalid' :''}" th:field="*{password}" placeholder="password">
+                        <input type="password" class="form-control" th:classappend="${#fields.hasErrors('password') ? 'is-invalid' :''}" th:field="*{password}" placeholder="Password">
                         <div th:if="${#fields.hasErrors('password')}" class="invalid-feedback">
                             <p th:errors="*{password}"></p>
                         </div>
@@ -107,7 +107,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="mobile">mobile</label>
+                        <label for="mobile">Mobile</label>
 
                         <input type="text" class="form-control" th:classappend="${#fields.hasErrors('mobile') ? 'is-invalid' :''}" th:field="*{mobile}"
                                placeholder="Mobile">
@@ -118,7 +118,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="street">street</label>
+                        <label for="street">Street</label>
 
                         <input type="text" class="form-control" th:classappend="${#fields.hasErrors('street') ? 'is-invalid' :''}" th:field="*{street}" placeholder="Street Address">
                         <div th:if="${#fields.hasErrors('street')}" class="invalid-feedback">
@@ -140,6 +140,9 @@
                             <div th:if="${#fields.hasErrors('city')}" class="invalid-feedback">
                                 <p th:errors="*{city}"></p>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <a href="https://www.geonames.org/postalcode-search.html?q=&country=LK" target="_blank" class="btn btn-link">Find Your Postal Code</a>
                         </div>
                     </div>
 

@@ -117,6 +117,7 @@ public class AppointmentServiceImpl implements AppointmentService {
             appointment.setStatus(AppointmentStatus.SCHEDULED);
             appointment.setCustomer(userService.getCustomerById(customerId));
             appointment.setProvider(userService.getProviderById(providerId));
+
             Work work = workService.getWorkById(workId);
             appointment.setWork(work);
             appointment.setStart(start);
