@@ -91,4 +91,4 @@ Email templates can be found in `src/main/resources/templates/email`.
 
 ---
 
-This README.md provides comprehensive information about setting up, using, and understanding the Appointment Scheduler application. You can customize it further to include badges, additional sections, or any specific instructions relevant to your project.
+This README.md provides comprehensive information about setting up, using, and understanding the Appointment Scheduler application.
