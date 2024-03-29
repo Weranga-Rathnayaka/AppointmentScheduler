@@ -23,6 +23,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.sql.*;
 
 @Slf4j
 @Service
@@ -182,7 +183,43 @@ public class EmailServiceImpl implements EmailService {
     }
 
     public static void SendMsg(String messageText) {
-        Twilio.init("AC8db776f8381aae32d6c3aa4ef137f606", "61b28a3e2abc9b521118f3ed3310d67b");
+
+        String UserName = "" ;
+        String Password = "" ;
+
+        try {
+
+
+
+            // Load the JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Create a connection to the database
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/appointmentscheduler?useSSL=false&serverTimezone=Asia/Colombo", "root", "1234");
+
+            // Prepare and execute the stored procedure
+            try (CallableStatement statement = connection.prepareCall("{call GetTwilioCredentials()}")) {
+                // Execute the stored procedure
+                statement.execute();
+
+                // Retrieve the results
+                ResultSet resultSet = statement.getResultSet();
+                if (resultSet.next()) {
+                     UserName = resultSet.getString("UserName");
+                     Password = resultSet.getString("Password");
+
+                }
+            }
+
+            // Close the database connection
+            connection.close();
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            // Handle exceptions appropriately
+        }
+
+        Twilio.init(UserName, Password);
         Message message = Message.creator(
                         new com.twilio.type.PhoneNumber("+94764065868"),
                         new com.twilio.type.PhoneNumber("+15169906673"),
